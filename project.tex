@@ -63,6 +63,18 @@ Figure \ref{fig:package-diagram} illustrates how the Nqood system has many exter
 
 Each internal subsystem in the Nqood system has its own database to make each subsystem independent. Below is a description of the 9 internal subsystems:
 
+\begin{enumerate}
+    \item \textbf{Accounts:} The accounts subsystem manages the customer accounts user for keeping track of each customer’s money and internal accounts used for keeping a safeguard. It also keeps track of the balances in each account. This system does reconciliation to make sure that the money is not lost.
+    \item \textbf{Analytics:} Our analytics internal subsystem provides users with monthly insights into their spending habits, allowing them to track expenses in categories like dining out, transportation, and groceries. It offers appealing data visualization for informed budgeting and lifestyle decisions.
+    \item \textbf{Payments:} This subsystem keeps track of all transaction attempts, even if they didn’t succeed. It allows for auditing and preventing fraud by monitoring customers’ behavior. It also serves to make sure reconciliation amounts are correct in the Accounts subsystem.
+    \item \textbf{Cards:} The card management system keeps track of the various user cards and sends a notification to the user once the card expires. It also manages the rewards and points of different cards. The subsystem communicates with three external subsystems: VISA, Apple Pay, and madaPay, and to issue cards, and tokenize them respectively.
+    \item \textbf{Authentication:} The authentication subsystem handles onboarding and logging in users. It depends on NAFATH and Focal by Mozn to make the onboarding experience safer. The first flow, which is onboarding, creates a customer using the Customer Management subsystem on its success. The second flow allows users to login to their existing accounts by checking with the Customer Management subsystem whether their provided credentials are correct or not.
+    \item \textbf{Customer Management:} The customer management system keeps track of the user details and updates them throughout the system as requested by the users.
+    \item \textbf{Feedback:} This subsystem allows users to submit feedback about their experience and submit ratings. Then it will be stored in the feedback internal system. This is done to improve the user's experience.
+    \item \textbf{Bills Automation:} Bill automation can be activated by the user to pay recurring bills and payments, like utility bills, SADAD bills, traffic violations, and internet/phone bills.
+    \item \textbf{Notification Management:} Sends notifications about any changes happening on the account, using SMS, Email, or/and mobile notifications. Users also get notified on transactions, balance changes, card issuance.
+\end{enumerate}
+
 \chapter{Nqood Methodology}
 
 \begin{figure}[h!]
