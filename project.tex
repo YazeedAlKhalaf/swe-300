@@ -52,25 +52,25 @@ Figure \ref{fig:black-box} demonstrates all the possible inputs and outputs of b
 
 \begin{enumerate}
     \item \textbf{Nqood User to Nqood:}
-        \begin{enumerate}
-            \item The user provides their credentials to Nqood and they get an access token that authenticates and authorizes them.
-            \item It gives the option to share the contacts. If the contacts are shared by the user, Nqood will return the available contacts, people who have a Nqood wallet.
-            \item Users can get their spending habits after using the wallet for a period.
-            \item Users can get their account details, which include account number, balance, and transactions.
-            \item Nqood system provides the option for the user to deposit their money through both fiat (Apple Pay, card) and crypto (Bitcoin, Ethereum, etc…) currencies.
-        \end{enumerate}
+          \begin{enumerate}
+              \item The user provides their credentials to Nqood and they get an access token that authenticates and authorizes them.
+              \item It gives the option to share the contacts. If the contacts are shared by the user, Nqood will return the available contacts, people who have a Nqood wallet.
+              \item Users can get their spending habits after using the wallet for a period.
+              \item Users can get their account details, which include account number, balance, and transactions.
+              \item Nqood system provides the option for the user to deposit their money through both fiat (Apple Pay, card) and crypto (Bitcoin, Ethereum, etc…) currencies.
+          \end{enumerate}
     \item \textbf{Nqood to External Systems:}
-        \begin{enumerate}
-            \item Nqood tokenizes the card of the user with Apple Pay/madaPay by sending the info to Apple, and then receiving a tokenized card.
-            \item Nqood system can talk to Visa to issue a card by providing some Card Issuance Details and receiving an Issued Card Details.
-            \item Nqood system can get GPT responses from our fine-tuned GPT by calling the OpenAI API that offers ChatGPT with a “Command Prompt” and receiving a generated response.
-            \item Nqood system can transfer money to local banks in Saudi Arabia using Sarie by providing some “Transactoin Details” and receiving a “Transaction Response”. This “Transaction Response” tells whether the transaction was successful or not along with providing some metadata about the transaction.
-            \item Nqood system uses the Focal system by Mozn to filter users who are candidates for onboarding. The Focal system uses an advanced AI model to give a risk score along with a full risk assessment that helps compliance in taking the correct action. Nqood sends some user information to Focal which responds with that user’s “Risk Asessment”.
-            \item Nqood system uses NAFATH to verify that the user is truly himself trying to open a Nqood wallet. This is a requirement from the regulator SAMA (Saudi Arabian Monetary Authority). Nqood system send the ID of the user and the user must approve this request by taking some action on their personal device that includes biometrics scanning.
-            \item Nqood system leverages SADAD services to provide users with bill payment options. Nqood sends the bill number to get the “Bill Details”. The user can take further actions like paying the bill.
-            \item Nqood creates a wallet for the user on a crypto blockchain with some “Wallet Details” and saves the address returned by the blockchain and the private key used for the user to manage their newly created wallet.
-            
-        \end{enumerate}
+          \begin{enumerate}
+              \item Nqood tokenizes the card of the user with Apple Pay/madaPay by sending the info to Apple, and then receiving a tokenized card.
+              \item Nqood system can talk to Visa to issue a card by providing some Card Issuance Details and receiving an Issued Card Details.
+              \item Nqood system can get GPT responses from our fine-tuned GPT by calling the OpenAI API that offers ChatGPT with a “Command Prompt” and receiving a generated response.
+              \item Nqood system can transfer money to local banks in Saudi Arabia using Sarie by providing some “Transactoin Details” and receiving a “Transaction Response”. This “Transaction Response” tells whether the transaction was successful or not along with providing some metadata about the transaction.
+              \item Nqood system uses the Focal system by Mozn to filter users who are candidates for onboarding. The Focal system uses an advanced AI model to give a risk score along with a full risk assessment that helps compliance in taking the correct action. Nqood sends some user information to Focal which responds with that user’s “Risk Asessment”.
+              \item Nqood system uses NAFATH to verify that the user is truly himself trying to open a Nqood wallet. This is a requirement from the regulator SAMA (Saudi Arabian Monetary Authority). Nqood system send the ID of the user and the user must approve this request by taking some action on their personal device that includes biometrics scanning.
+              \item Nqood system leverages SADAD services to provide users with bill payment options. Nqood sends the bill number to get the “Bill Details”. The user can take further actions like paying the bill.
+              \item Nqood creates a wallet for the user on a crypto blockchain with some “Wallet Details” and saves the address returned by the blockchain and the private key used for the user to manage their newly created wallet.
+
+          \end{enumerate}
 \end{enumerate}
 
 \chapter{Design Concrete Component Diagram}
@@ -107,9 +107,9 @@ Each internal subsystem in the Nqood system has its own database to make each su
     \label{fig:nqood-methodology}
 \end{figure}
 
-We chose the waterfall model. In industries with strict regularity compliance the waterfall's
+As seen in Figure \ref{fig:nqood-methodology}, we chose the waterfall model. In industries with strict regularity compliance the waterfall's
 document focused approach can be beneficial. It insures that all requirements are documented, implemented and tested
-throughly. 
+throughly.
 
 We injected prototyping in the requirements phase because we have complex requirements. Waterfall is the best methodology if there are well-defined requirements.
 
