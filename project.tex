@@ -1,5 +1,6 @@
 \documentclass[a4paper]{report}
 \usepackage{graphicx}
+\usepackage{tabularx}
 
 \title{Design of Nqood, a Digital Wallet}
 \author{
@@ -127,6 +128,27 @@ And in every phase we added a V\&V stage. We care a lot about Quality. Quality i
 \end{figure}
 
 \section{Make Transaction Use Case Description}
+
+\begin{table}[htbp]
+    \begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    Name                                                              & Make Local Transaction                                                                                                                                                                                                                                                                                                                    \\ \hline
+    Actors                                                            & Customer, Compliance Officer                                                                                                                                                                                                                                                                                                              \\ \hline
+    Goals                                                             & \begin{tabular}[c]{@{}l@{}}For Customer: To transfer funds to another account within the same country (local) .\\ For Compliance Officer: To ensure that local transactions comply with regulatory requirements.\end{tabular}                                                                                                             \\ \hline
+    Preconditions                                                     & \begin{tabular}[c]{@{}l@{}}Customer must be authenticated and logged into the system.\\ Customer's account must have sufficient funds for transaction.\end{tabular}                                                                                                                                                                       \\ \hline
+    Summary                                                           & \begin{tabular}[c]{@{}l@{}}The "Make Transaction" use case allows customers to transfer funds. The local transaction enables in-country transfers,\\ transaction encompasses transferring funds local which may involve authentication using OTP (One-time-password.\\ Compliance Officer oversees for regulatory adherence.\end{tabular} \\ \hline
+    Related use cases                                                 & make international transactions , make international with currency conversions                                                                                                                                                                                                                                                            \\ \hline
+    Steps                                                             &                                                                                                                                                                                                                                                                                                                                           \\ \hline
+    \textbf{Customer Action}                                          & \textbf{System Response}                                                                                                                                                                                                                                                                                                                  \\ \hline
+    1. Customer chooses "Local Transfer" option                       & Account class prompts for recipient's account details.                                                                                                                                                                                                                                                                                    \\ \hline
+    2. Customer enters recipient account details and transfer amount. & Account class validates the details and checks fund availability.                                                                                                                                                                                                                                                                         \\ \hline
+    3. Customer confirms the transaction.                             & Transaction class processes the transaction and sends OTP to the customer if necessary.                                                                                                                                                                                                                                                   \\ \hline
+    4. Customer enters OTP                                            & Account class validates OTP and starts transaction with the transaction class                                                                                                                                                                                                                                                             \\ \hline
+    5.                                                                & Transaction class sends details of the transaction to the compliance officer                                                                                                                                                                                                                                                              \\ \hline
+    6. The transaction officer approves the transaction               & \begin{tabular}[c]{@{}l@{}}Transaction class confirms the transaction with the accounts class. \\ Accounts class updates the transaction and sends receipts to the customer.\end{tabular}                                                                                                                                                 \\ \hline
+    \end{tabularx}
+    \end{table}
+    
 
 \section{Make Transaction Use Case Class Diagram}
 
