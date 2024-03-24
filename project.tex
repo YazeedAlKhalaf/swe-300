@@ -5,6 +5,8 @@
 \usepackage[colorlinks=true, linkcolor=softblue, citecolor=softblue, filecolor=softblue, urlcolor=softblue]{hyperref}
 \usepackage{url}
 \usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem}
 
 \title{Design of Nqood, a Digital Wallet}
 \author{
@@ -133,28 +135,52 @@ The accounts subsystem is responible for managing the customer accounts and the 
     \label{fig:nqood-accounts-use-case-diagram}
 \end{figure}
 
+\newpage
+
 \section{Make Transaction Use Case Description}
 
-\begin{table}[htbp]
-    \begin{tabularx}{\textwidth}{|X|X|}
-    \hline
-    Name                                                              & Make Local Transaction                                                                                                                                                                                                                                                                                                                    \\ \hline
-    Actors                                                            & Customer, Compliance Officer                                                                                                                                                                                                                                                                                                              \\ \hline
-    Goals                                                             & \begin{tabular}[c]{@{}l@{}}For Customer: To transfer funds to another account within the same country (local) .\\ For Compliance Officer: To ensure that local transactions comply with regulatory requirements.\end{tabular}                                                                                                             \\ \hline
-    Preconditions                                                     & \begin{tabular}[c]{@{}l@{}}Customer must be authenticated and logged into the system.\\ Customer's account must have sufficient funds for transaction.\end{tabular}                                                                                                                                                                       \\ \hline
-    Summary                                                           & \begin{tabular}[c]{@{}l@{}}The "Make Transaction" use case allows customers to transfer funds. The local transaction enables in-country transfers,\\ transaction encompasses transferring funds local which may involve authentication using OTP (One-time-password.\\ Compliance Officer oversees for regulatory adherence.\end{tabular} \\ \hline
-    Related use cases                                                 & make international transactions , make international with currency conversions                                                                                                                                                                                                                                                            \\ \hline
-    Steps                                                             &                                                                                                                                                                                                                                                                                                                                           \\ \hline
-    \textbf{Customer Action}                                          & \textbf{System Response}                                                                                                                                                                                                                                                                                                                  \\ \hline
-    1. Customer chooses "Local Transfer" option                       & Account class prompts for recipient's account details.                                                                                                                                                                                                                                                                                    \\ \hline
-    2. Customer enters recipient account details and transfer amount. & Account class validates the details and checks fund availability.                                                                                                                                                                                                                                                                         \\ \hline
-    3. Customer confirms the transaction.                             & Transaction class processes the transaction and sends OTP to the customer if necessary.                                                                                                                                                                                                                                                   \\ \hline
-    4. Customer enters OTP                                            & Account class validates OTP and starts transaction with the transaction class                                                                                                                                                                                                                                                             \\ \hline
-    5.                                                                & Transaction class sends details of the transaction to the compliance officer                                                                                                                                                                                                                                                              \\ \hline
-    6. The transaction officer approves the transaction               & \begin{tabular}[c]{@{}l@{}}Transaction class confirms the transaction with the accounts class. \\ Accounts class updates the transaction and sends receipts to the customer.\end{tabular}                                                                                                                                                 \\ \hline
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\hsize=0.3\hsize\linewidth=\hsize}X|>{\hsize=0.7\hsize\linewidth=\hsize}X|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Use Case ID: MakeLocalTransaction}}                                                                                                                                             \\
+        \hline
+        \textbf{Actors}            & Customer, Compliance Officer                                                                                                                                                    \\
+        \hline
+        \textbf{Goals}             &
+        \begin{itemize}[noitemsep]
+            \item \textbf{Customer}: To transfer funds to another account within the same country.
+            \item \textbf{Compliance Officer}: To ensure transactions comply with regulatory requirements.
+        \end{itemize}                                                                                                                \\
+        \hline
+        \textbf{Preconditions}     &
+        \begin{enumerate}[noitemsep]
+            \item Customer is authenticated and logged into the system.
+            \item Customer's account has sufficient funds for the transaction.
+        \end{enumerate}                                                                                                                                            \\
+        \hline
+        \textbf{Summary}           & This use case enables customers to make in-country fund transfers. It includes steps for transaction validation, OTP (One-Time Password) authentication, and compliance checks. \\
+        \hline
+        \textbf{Related Use Cases} & Make International Transactions, Make International Transactions with Currency Conversions.                                                                                     \\
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Steps of Execution}}                                                                                                                                                            \\
+        \hline
+        \textbf{Step}              & \textbf{Customer Action and System Response}                                                                                                                                    \\
+        \hline
+        1                          & \textbf{Customer Action:} Customer selects "Local Transfer" option. \newline \textbf{System Response:} Prompts for recipient's account details.                                 \\
+        \hline
+        2                          & \textbf{Customer Action:} Enters recipient's details and transfer amount. \newline \textbf{System Response:} Validates details and checks fund availability.                    \\
+        \hline
+        3                          & \textbf{Customer Action:} Confirms the transaction. \newline \textbf{System Response:} Processes transaction, sends OTP if necessary.                                           \\
+        \hline
+        4                          & \textbf{Customer Action:} Enters OTP. \newline \textbf{System Response:} Validates OTP, initiates transaction.                                                                  \\
+        \hline
+        5                          & \textbf{System Response:} Sends transaction details to compliance officer.                                                                                                      \\
+        \hline
+        6                          & \textbf{Customer Action:} Transaction officer approves. \newline \textbf{System Response:} Confirms transaction, updates account, sends receipt.                                \\
+        \hline
     \end{tabularx}
-    \end{table}
-    
+\end{table}
 
 \section{Make Transaction Use Case Class Diagram}
 
