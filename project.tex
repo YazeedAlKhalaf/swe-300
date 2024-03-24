@@ -1,5 +1,9 @@
 \documentclass[a4paper]{report}
 \usepackage{graphicx}
+\usepackage{xcolor} % Load this before hyperref
+\definecolor{softblue}{RGB}{70,130,180}
+\usepackage[colorlinks=true, linkcolor=softblue, citecolor=softblue, filecolor=softblue, urlcolor=softblue]{hyperref}
+\usepackage{url}
 \usepackage{tabularx}
 
 \title{Design of Nqood, a Digital Wallet}
@@ -119,6 +123,8 @@ And in every phase we added a V\&V stage. We care a lot about Quality. Quality i
 \chapter{Iteration 2}
 
 \section{Use Case Diagram for Accounts Subsystem}
+
+The accounts subsystem is responible for managing the customer accounts and the internal accounts owned by Nqood. The use case diagram for the accounts subsystem is shown in Figure \ref{fig:nqood-accounts-use-case-diagram}.
 
 \begin{figure}[h!]
     \centering
