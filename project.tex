@@ -1,5 +1,12 @@
 \documentclass[a4paper]{report}
 \usepackage{graphicx}
+\usepackage{xcolor} % Load this before hyperref
+\definecolor{softblue}{RGB}{70,130,180}
+\usepackage[colorlinks=true, linkcolor=softblue, citecolor=softblue, filecolor=softblue, urlcolor=softblue]{hyperref}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem}
 
 \title{Design of Nqood, a Digital Wallet}
 \author{
@@ -12,7 +19,7 @@
     \textbf{Course:} SWE 300 - Software Processing and Modeling \\
     \textbf{Instructor:} Dr. Ahmed Ghoneim
 }
-\date{21 Feb, 2024}
+\date{25 Mar, 2024}
 
 \begin{document}
 
@@ -119,6 +126,8 @@ And in every phase we added a V\&V stage. We care a lot about Quality. Quality i
 
 \section{Use Case Diagram for Accounts Subsystem}
 
+The accounts subsystem is responible for managing the customer accounts and the internal accounts owned by Nqood. The use case diagram for the accounts subsystem is shown in Figure \ref{fig:nqood-accounts-use-case-diagram}.
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{images/nqood-accounts-use-case-diagram.png}
@@ -126,9 +135,56 @@ And in every phase we added a V\&V stage. We care a lot about Quality. Quality i
     \label{fig:nqood-accounts-use-case-diagram}
 \end{figure}
 
+\newpage
+
 \section{Make Transaction Use Case Description}
 
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\hsize=0.3\hsize\linewidth=\hsize}X|>{\hsize=0.7\hsize\linewidth=\hsize}X|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Use Case ID: MakeLocalTransaction}}                                                                                                                                             \\
+        \hline
+        \textbf{Actors}            & Customer, Compliance Officer                                                                                                                                                    \\
+        \hline
+        \textbf{Goals}             &
+        \begin{itemize}[noitemsep]
+            \item \textbf{Customer}: To transfer funds to another account within the same country.
+            \item \textbf{Compliance Officer}: To ensure transactions comply with regulatory requirements.
+        \end{itemize}                                                                                                                \\
+        \hline
+        \textbf{Preconditions}     &
+        \begin{enumerate}[noitemsep]
+            \item Customer is authenticated and logged into the system.
+            \item Customer's account has sufficient funds for the transaction.
+        \end{enumerate}                                                                                                                                            \\
+        \hline
+        \textbf{Summary}           & This use case enables customers to make in-country fund transfers. It includes steps for transaction validation, OTP (One-Time Password) authentication, and compliance checks. \\
+        \hline
+        \textbf{Related Use Cases} & Make International Transactions, Make International Transactions with Currency Conversions.                                                                                     \\
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Steps of Execution}}                                                                                                                                                            \\
+        \hline
+        \textbf{Step}              & \textbf{Customer Action and System Response}                                                                                                                                    \\
+        \hline
+        1                          & \textbf{Customer Action:} Customer selects "Local Transfer" option. \newline \textbf{System Response:} Prompts for recipient's account details.                                 \\
+        \hline
+        2                          & \textbf{Customer Action:} Enters recipient's details and transfer amount. \newline \textbf{System Response:} Validates details and checks fund availability.                    \\
+        \hline
+        3                          & \textbf{Customer Action:} Confirms the transaction. \newline \textbf{System Response:} Processes transaction, sends OTP if necessary.                                           \\
+        \hline
+        4                          & \textbf{Customer Action:} Enters OTP. \newline \textbf{System Response:} Validates OTP, initiates transaction.                                                                  \\
+        \hline
+        5                          & \textbf{System Response:} Sends transaction details to compliance officer.                                                                                                      \\
+        \hline
+        6                          & \textbf{Customer Action:} Transaction officer approves. \newline \textbf{System Response:} Confirms transaction, updates account, sends receipt.                                \\
+        \hline
+    \end{tabularx}
+\end{table}
+
 \section{Make Transaction Use Case Class Diagram}
+
+This class diagram shows the classes involved in the make transaction use case. It shows the relationships between the classes and the attributes and methods of each class. The make transaction use case class diagram is shown in Figure \ref{fig:nqood-make-transaction-use-case-class-diagram}.
 
 \begin{figure}[h!]
     \centering
@@ -137,7 +193,11 @@ And in every phase we added a V\&V stage. We care a lot about Quality. Quality i
     \label{fig:nqood-make-transaction-use-case-class-diagram}
 \end{figure}
 
+\newpage
+
 \section{Make Local Transaction Sequence Diagram}
+
+This sequence diagram shows the sequence of interactions between the customer, the system, and the compliance officer when the customer makes a local transaction. The make local transaction sequence diagram is shown in Figure \ref{fig:nqood-make-local-transaction-sequence-diagram}.
 
 \begin{figure}[h!]
     \centering
@@ -146,13 +206,30 @@ And in every phase we added a V\&V stage. We care a lot about Quality. Quality i
     \label{fig:nqood-make-local-transaction-sequence-diagram}
 \end{figure}
 
+\newpage
+
 \section{Make Account State Diagram}
+
+This state diagram shows the different states that an account can be in and the transitions between these states. The make account state diagram is shown in Figure \ref{fig:nqood-make-account-state-diagram}.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{images/nqood-account-tx-state-diagram.png}
     \caption{Nqood Make Account State Diagrm}
     \label{fig:nqood-make-account-state-diagram}
+\end{figure}
+
+\newpage
+
+\section{Make Transaction Activity Diagram}
+
+This activity diagram shows the activities involved in making a transaction. It shows the sequence of activities that need to be performed to complete a transaction. The make transaction activity diagram is shown in Figure \ref{fig:nqood-make-transaction-activity-diagram}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/nqood-make-tx-activity-diagram.png}
+    \caption{Nqood Make Transaction Activity Diagram}
+    \label{fig:nqood-make-transaction-activity-diagram}
 \end{figure}
 
 \end{document}
