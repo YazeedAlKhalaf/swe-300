@@ -1,0 +1,36 @@
+actor Customer
+participant Account
+participant Transaction
+actor Compliance Officer
+activate Account
+Customer->Account: Chooses Local Transger Option
+Account --> Customer: System prompts for account details
+Customer ->Account: Customer enter recipient account details and transfer ammount
+Account -->Customer: System validates the details and checks fund availability
+
+alt failure
+Account -->Customer: System terminates tx du to invalid details 
+end
+
+Customer->Account: Customer confirms the transaction
+Account --> Customer: Sends the OTP
+Customer ->Account: Enters OTP
+
+loop #ff00ff if otp invalid, repeat
+Account --> Account: Validates OTP
+end
+activate Transaction
+Account ->Transaction: Initiate Transaction
+activate Compliance Officer
+Transaction ->Compliance Officer:Sends Details The of Transaction
+
+alt success
+Compliance Officer --> Transaction: Verifies Transaction
+Transaction -->Account : Confirms Transaction
+else failure
+Compliance Officer --> Transaction: Flags Tx
+Transaction -->Account: Transaction Terminated
+end
+
+deactivate Compliance Officer
+Account -->Customer: Sends Transaction receipt and records
