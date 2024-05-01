@@ -232,4 +232,133 @@ This activity diagram shows the activities involved in making a transaction. It 
     \label{fig:nqood-make-transaction-activity-diagram}
 \end{figure}
 
+\chapter{Iteration 3 or 4}
+
+\section{State Machine Diagram of Local Transaction}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/nqood-account-tx-state-diagram.png}
+    \caption{Nqood Make Account State Diagrm}
+    \label{fig:nqood-make-account-state-diagram2}
+\end{figure}
+
+\subsection{Formal representatin for scenario 1}
+
+S = {Idle, Awaiting Details,  Validating Details, Awaiting Confirmation, Awaiting OTP, Validating OTP, Initiate Transaction, Transaction Completed}
+\newline
+I = {Idle}
+\newline
+A = {Start Local Transaction, Enters Details, Details Valid, Transaction Confirmed, Enter OTP, OTP valid, Compliance Officer Verifies, Update account and send receipt}
+\newline
+T = {(Idle, Start Local Transaction, Awaiting Details), (Awaiting Details, Enters Details, Validating Details), (Validating Details, Details Valid, Awaiting Confirmation), (Awaiting Confirmation, Transaction Confirmed, Awaiting OTP), (Awaiting OTP, Enter OTP, Validating OTP), (Validating OTP, OTP valid, Initiate Transaction), (Initiate Transaction, Compliance Officer Verifies, Transaction Completed)}
+\newline
+
+\subsubsection{Execution Scenario 1}
+
+<(Idle), (Start Local Transaction), (Awaiting Details), (Enters Details), (Validating Details), (Details Valid), (Awaiting Confirmation), (Transaction Confirmed), (Awaiting OTP), (Enter OTP), (Validating OTP), (OTP valid), (Initiate Transaction), (Compliance Officer Verifies), (Transaction Completed) >
+
+\subsection{Formal representatin for scenario 2 (Exceptional Scenario)}
+
+S = {Idle, Awaiting Details,  Validating Details, Awaiting Confirmation, Transaction Terminated}
+\newline
+I = {Idle}
+\newline
+A = {Start Local Transaction, Enters Details, Details Valid, Transaction Declined}
+\newline
+T = {(Idle, Start Local Transaction, Awaiting Details), (Awaiting Details, Enters Details, Validating Details), (Validating Details, Details Valid, Awaiting Confirmation), (Awaiting Confirmation, Transaction Declined, Transaction Terminated)}
+\newline
+
+\subsubsection{Execution Scenario 2}
+
+<(Idle), (Start Local Transaction), (Awaiting Details), (Enters Details), (Validating Details), (Details Valid), (Awaiting Confirmation), (Transaction Declined),  (Transaction Terminated)>
+
+\section{Petri Net Diagram of Local Transaction}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/nqood-petri-net.png}
+    \caption{Nqood Make Transaction Activity Diagram}
+    \label{fig:nqood-petri-net}
+\end{figure}
+
+\subsection{Formal representatin for scenario 1}
+
+P = {idle, awaiting details, validating details, awaiting confirmation, awaiting otp, validating otp, processing transaction, transaction completed}
+\newline
+T = {start local transaction, enters details, details valud, transaction confirmed, enter otp, otp valid, compliance officer verifies, update account and send receipt}
+\newline
+F = {
+(idle, start local transaction),
+(start local transaction, awaiting details),
+(awaiting details, enters details),
+(enters details, validating details),
+(validating details, details valid),
+(details valid, awaiting confirmation),
+(awaiting confirmation, transaction confirmed),
+(transaction confirmed, awaiting otp),
+(awaiting otp, enter otp),
+(enter otp, validating otp),
+(validating otp, otp valid),
+(otp valid, processing transaction),
+(processing transaction, compliance officer verifies),
+(compliance officer verifies, transaction completed),
+(transaction completed, update account and send receipt),
+(update account and send receipt, idle),
+}
+\newline
+
+\subsection{State marking for scenario 1}
+
+M = {idle, awaiting details, validating details, awaiting confirmation, awaiting otp, validating otp, processing transaction, transaction completed}
+\newline
+
+M0 = {1,0,0,0,0,0,0,0}
+\newline
+M1 = {0,1,0,0,0,0,0,0}
+\newline
+M2 = {0,0,1,0,0,0,0,0}
+\newline
+M3 = {0,0,0,1,0,0,0,0}
+\newline
+M4 = {0,0,0,0,1,0,0,0}
+\newline
+M5 = {0,0,0,0,0,1,0,0}
+\newline
+M6 = {0,0,0,0,0,0,1,0}
+\newline
+M7 = {0,0,0,0,0,0,0,1}
+\newline
+
+\subsection{Formal representatin for scenario 2 (Exceptional Scenario)}
+
+P = {idle, awaiting details, validating details, transaction terminated}
+\newline
+T = {start local transaction, enters details, details invalid, display reason for transaction termination}
+\newline
+F = {
+(idle, start local transaction),
+(start local transaction, awaiting details),
+(awaiting details, enters details),
+(enters details, validating details),
+(validating details, details invalid),
+(details invalid, transaction terminated),
+(transaction terminated, display reason for transaction termination),
+(display reason for transaction termination, idle),
+}
+\newline
+
+\subsection{State marking for scenario 2 (Exceptional Scenario)}
+
+M = {idle, awaiting details, validating details, transaction terminated}
+\newline
+
+M0 = {1,0,0,0}
+\newline
+M1 = {0,1,0,0}
+\newline
+M2 = {0,0,1,0}
+\newline
+M3 = {0,0,0,1}
+
 \end{document}
